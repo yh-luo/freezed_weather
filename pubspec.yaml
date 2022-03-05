@@ -1,0 +1,34 @@
+name: freezed_weather
+description: A rewrite of Flutter Weather Tutorial using freezed code generation.
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  freezed_annotation: ^1.1.0
+  json_annotation: ^4.4.0
+  weather_repository: 
+    path: packages/weather_repository
+  flutter_bloc: ^8.0.1
+  hydrated_bloc: ^8.0.0
+  google_fonts: ^2.3.1
+  flutter_services_binding: ^0.1.0
+  path_provider: ^2.0.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  freezed: ^1.1.0
+  build_runner: ^2.1.7
+  json_serializable: ^6.1.4
+  bloc_test: ^9.0.2
+  mocktail: ^0.2.0
+
+flutter:
+  uses-material-design: true
