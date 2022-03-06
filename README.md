@@ -8,6 +8,6 @@ using [freezed](https://pub.dev/packages/freezed).
   - Bloc provides better traceability of what's happening.
   - Bloc can be listened by / listen to other blocs
   - Bloc allows advanced event transformations
-  - However, bloc requires more detailed implementation. `freeezed` code generation could be used to reduce the amount of coding.
+  - However, bloc requires more detailed implementation. `freezed` code generation could be used to reduce the amount of coding.
 - `freezed` was used instead of `equatable` to compare data models
-  - `@freezed` comes with auto-generated `copyWith` implementation, which is not prone to human-made errors (e.g., forget to a add a variable into `prop` list)
+  - A `@freezed` class comes with auto-generated `copyWith` implementation, which is not prone to human-made errors (e.g., forget to add a variable into `prop` list, which is the mistake I've made).
