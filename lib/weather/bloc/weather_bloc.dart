@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:weather_repository/weather_repository.dart'
@@ -44,11 +43,8 @@ class WeatherBloc extends HydratedBloc<WeatherEvent, WeatherState> {
         ),
       );
     } on Exception catch (error, stackTrace) {
-      log(
-        error.toString(),
-        stackTrace: stackTrace,
-        name: 'WeatherBloc',
-      );
+      // notify the bloc observer
+      addError(error, stackTrace);
       emit(state.copyWith(status: WeatherStatus.failure));
     }
   }
@@ -75,7 +71,9 @@ class WeatherBloc extends HydratedBloc<WeatherEvent, WeatherState> {
           weather: weather.copyWith(temperature: Temperature(value: value)),
         ),
       );
-    } on Exception {
+    } on Exception catch (error, stackTrace) {
+      // notify the bloc observer
+      addError(error, stackTrace);
       emit(state);
     }
   }
@@ -107,11 +105,17 @@ class WeatherBloc extends HydratedBloc<WeatherEvent, WeatherState> {
   }
 
   @override
-  WeatherState fromJson(Map<String, dynamic> json) =>
-      WeatherState.fromJson(json);
+  WeatherState fromJson(Map<String, dynamic> json) {
+    return WeatherState.fromJson(json);
+  }
 
   @override
-  Map<String, dynamic> toJson(WeatherState state) => state.toJson();
+  Map<String, dynamic>? toJson(WeatherState state) {
+    if (state.status.isSuccess) {
+      return state.toJson();
+    }
+    return null;
+  }
 }
 
 extension on double {

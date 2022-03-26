@@ -43,13 +43,28 @@ void main() {
     });
 
     group('toJson/fromJson', () {
-      test('work properly', () {
+      test('persist the successful state', () {
         mockHydratedStorage(() {
           final weatherBloc = WeatherBloc(weatherRepository);
-          expect(
-            weatherBloc.fromJson(weatherBloc.toJson(weatherBloc.state)),
-            weatherBloc.state,
-          );
+          weatherBloc.add(WeatherEvent.started('Taipei'));
+          Future.delayed(
+              Duration(milliseconds: 100),
+              () => expect(
+                    weatherBloc
+                        .fromJson(weatherBloc.toJson(weatherBloc.state)!),
+                    weatherBloc.state,
+                  ));
+        });
+      });
+
+      test('state is not persisted when error happens', () {
+        mockHydratedStorage(() {
+          final weatherBloc = WeatherBloc(weatherRepository);
+          when(() => weatherRepository.getWeather(any()))
+              .thenThrow(Exception());
+          weatherBloc.add(WeatherEvent.started('Taipei'));
+          Future.delayed(Duration(milliseconds: 100),
+              () => expect(weatherBloc.toJson(weatherBloc.state), isNull));
         });
       });
     });
