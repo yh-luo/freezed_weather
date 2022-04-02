@@ -3,16 +3,16 @@
 A rewrite of [Bloc tutorial: Flutter Weather Tutorial](https://bloclibrary.dev/#/flutterweathertutorial)
 using [freezed](https://pub.dev/packages/freezed).
 
-- Bloc was used instead of Cubit
+- Bloc is used instead of Cubit
 ([Cubit vs Bloc](https://bloclibrary.dev/#/coreconcepts?id=cubit-vs-bloc))
   - Bloc provides better traceability of what's happening.
     - `onTransition` shows the event that triggers the new state
   - Bloc allows advanced event transformations
   - However, bloc requires more detailed implementation. `freezed` code generation could be used to reduce the amount of coding.
-- `freezed` was used instead of `equatable` to compare data models
-  - A `@freezed` class comes with auto-generated `copyWith` implementation, which is not prone to human-made errors (e.g., forget to add a variable into `prop` list, which is the mistake I've made).
+- [freezed](https://pub.dev/packages/freezed) is used to compare data models. [equatable](https://pub.dev/packages/equatable) is not used anymore.
+  - A `@freezed` class comes with generated `copyWith` implementation, which is not prone to human-made errors (e.g., forget to add a variable into `prop` list, which is the mistake I've made).
 
-### Notable changes from the original
+### Notable changes
 
 #### `@freezed` data models
 
