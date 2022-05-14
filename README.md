@@ -29,3 +29,7 @@ using [freezed](https://pub.dev/packages/freezed).
 In the original tutorial, all states are cached. Imagine the scenario: When an error happens, the user terminates the app and reopens it. Guess what? The error state is served immediately!
 
 The bloc is working properly but the user experience is not optimal. `WeatherBloc.toJson` is modified to only cache the successfully loaded state. When the user opens the app, it always shows that last loaded weather (or the initial state if nothing happens yet). Again, it's a matter of choice of when to cache the states.
+
+### Cautions
+
+This tutorial has been rewritten after the releases of [Flutter 3.0](https://docs.flutter.dev/development/tools/sdk/release-notes), [freezed 2.0.3](https://pub.dev/packages/freezed), and [hydrated_bloc 9.0.0-dev.2](https://pub.dev/packages/hydrated_bloc/versions/9.0.0-dev.2). It won't work on previous versions. You can use tag `1.0` to fetch the older scripts.
