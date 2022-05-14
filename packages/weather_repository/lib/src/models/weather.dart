@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'weather.g.dart';
 part 'weather.freezed.dart';
 
 enum WeatherCondition {
@@ -18,7 +17,4 @@ class Weather with _$Weather {
     required double temperature,
     required WeatherCondition condition,
   }) = _Weather;
-
-  factory Weather.fromJson(Map<String, dynamic> json) =>
-      _$WeatherFromJson(json);
 }
