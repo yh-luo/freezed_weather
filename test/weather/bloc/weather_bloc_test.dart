@@ -23,8 +23,9 @@ void main() {
   group('WeatherBloc', () {
     late weather_repository.Weather weather;
     late weather_repository.WeatherRepository weatherRepository;
+    late WeatherBloc weatherBloc;
 
-    setUp(() {
+    setUp(() async {
       weather = MockWeather();
       weatherRepository = MockWeatherRepository();
       when(() => weather.condition).thenReturn(weatherCondition);
@@ -33,6 +34,9 @@ void main() {
       when(
         () => weatherRepository.getWeather(any()),
       ).thenAnswer((_) async => weather);
+
+      weatherBloc =
+          await mockHydratedStorage(() => WeatherBloc(weatherRepository));
     });
 
     test('initial state is correct', () {
@@ -72,21 +76,21 @@ void main() {
     group('fetchWeather', () {
       blocTest<WeatherBloc, WeatherState>(
         'emits nothing when city is null',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.started(null)),
         expect: () => <WeatherState>[],
       );
 
       blocTest<WeatherBloc, WeatherState>(
         'emits nothing when city is empty',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.started('')),
         expect: () => <WeatherState>[],
       );
 
       blocTest<WeatherBloc, WeatherState>(
         'calls getWeather with correct city',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.started(weatherLocation)),
         verify: (_) {
           verify(() => weatherRepository.getWeather(weatherLocation)).called(1);
@@ -100,7 +104,7 @@ void main() {
             () => weatherRepository.getWeather(any()),
           ).thenThrow(Exception('oops'));
         },
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.started(weatherLocation)),
         expect: () => <WeatherState>[
           WeatherState(status: WeatherStatus.loading),
@@ -110,7 +114,7 @@ void main() {
 
       blocTest<WeatherBloc, WeatherState>(
         'emits [loading, success] when getWeather returns (celsius)',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.started(weatherLocation)),
         expect: () => <dynamic>[
           WeatherState(status: WeatherStatus.loading),
@@ -134,7 +138,7 @@ void main() {
 
       blocTest<WeatherBloc, WeatherState>(
         'emits [loading, success] when getWeather returns (fahrenheit)',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(temperatureUnits: TemperatureUnits.fahrenheit),
         act: (bloc) => bloc.add(WeatherEvent.started(weatherLocation)),
         expect: () => <dynamic>[
@@ -164,7 +168,7 @@ void main() {
     group('refreshWeather', () {
       blocTest<WeatherBloc, WeatherState>(
         'emits nothing when status is not success',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.refreshed()),
         expect: () => <WeatherState>[],
         verify: (_) {
@@ -174,7 +178,7 @@ void main() {
 
       blocTest<WeatherBloc, WeatherState>(
         'emits nothing when location is null',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(status: WeatherStatus.success),
         act: (bloc) => bloc.add(WeatherEvent.refreshed()),
         expect: () => <WeatherState>[],
@@ -185,7 +189,7 @@ void main() {
 
       blocTest<WeatherBloc, WeatherState>(
         'invokes getWeather with correct location',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(
           status: WeatherStatus.success,
           weather: Weather(
@@ -208,7 +212,7 @@ void main() {
             () => weatherRepository.getWeather(any()),
           ).thenThrow(Exception('oops'));
         },
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(
           status: WeatherStatus.success,
           weather: Weather(
@@ -224,7 +228,7 @@ void main() {
 
       blocTest<WeatherBloc, WeatherState>(
         'emits updated weather (celsius)',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(
           status: WeatherStatus.success,
           weather: Weather(
@@ -256,7 +260,7 @@ void main() {
 
       blocTest<WeatherBloc, WeatherState>(
         'emits updated weather (fahrenheit)',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(
           temperatureUnits: TemperatureUnits.fahrenheit,
           status: WeatherStatus.success,
@@ -291,7 +295,7 @@ void main() {
     group('toggleUnits', () {
       blocTest<WeatherBloc, WeatherState>(
         'emits updated units when status is not success',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         act: (bloc) => bloc.add(WeatherEvent.unitsChanged()),
         expect: () => <WeatherState>[
           WeatherState(temperatureUnits: TemperatureUnits.fahrenheit),
@@ -301,7 +305,7 @@ void main() {
       blocTest<WeatherBloc, WeatherState>(
         'emits updated units and temperature '
         'when status is success (celsius)',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(
           status: WeatherStatus.success,
           temperatureUnits: TemperatureUnits.fahrenheit,
@@ -330,7 +334,7 @@ void main() {
       blocTest<WeatherBloc, WeatherState>(
         'emits updated units and temperature '
         'when status is success (fahrenheit)',
-        build: () => mockHydratedStorage(() => WeatherBloc(weatherRepository)),
+        build: () => weatherBloc,
         seed: () => WeatherState(
           status: WeatherStatus.success,
           temperatureUnits: TemperatureUnits.celsius,
