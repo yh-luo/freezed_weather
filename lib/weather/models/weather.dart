@@ -6,9 +6,10 @@ import 'package:weather_repository/weather_repository.dart'
 part 'weather.g.dart';
 part 'weather.freezed.dart';
 
-enum TemperatureUnits { fahrenheit, celsius }
+enum TemperatureUnits {
+  fahrenheit,
+  celsius;
 
-extension TemperatureUnitsX on TemperatureUnits {
   bool get isFahrenheit => this == TemperatureUnits.fahrenheit;
   bool get isCelsius => this == TemperatureUnits.celsius;
 }
