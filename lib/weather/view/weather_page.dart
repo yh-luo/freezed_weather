@@ -9,7 +9,7 @@ import '../../theme/theme.dart';
 import '../weather.dart';
 
 class WeatherPage extends StatelessWidget {
-  const WeatherPage({Key? key}) : super(key: key);
+  const WeatherPage({super.key});
 
   @override
   Widget build(BuildContext context) {

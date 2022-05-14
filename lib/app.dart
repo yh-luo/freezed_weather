@@ -8,9 +8,8 @@ import 'theme/theme.dart';
 import 'weather/weather.dart';
 
 class WeatherApp extends StatelessWidget {
-  const WeatherApp({Key? key, required WeatherRepository weatherRepository})
-      : _weatherRepository = weatherRepository,
-        super(key: key);
+  const WeatherApp({super.key, required WeatherRepository weatherRepository})
+      : _weatherRepository = weatherRepository;
 
   final WeatherRepository _weatherRepository;
 
@@ -27,7 +26,7 @@ class WeatherApp extends StatelessWidget {
 }
 
 class WeatherAppView extends StatelessWidget {
-  const WeatherAppView({Key? key}) : super(key: key);
+  const WeatherAppView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,11 +4,11 @@ import '../weather.dart';
 
 class WeatherPopulated extends StatelessWidget {
   const WeatherPopulated({
-    Key? key,
+    super.key,
     required this.weather,
     required this.units,
     required this.onRefresh,
-  }) : super(key: key);
+  });
 
   final Weather weather;
   final TemperatureUnits units;
