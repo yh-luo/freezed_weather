@@ -12,42 +12,11 @@ part of 'location.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Location _$LocationFromJson(Map<String, dynamic> json) {
   return _Location.fromJson(json);
 }
-
-/// @nodoc
-class _$LocationTearOff {
-  const _$LocationTearOff();
-
-  _Location call(
-      {required String title,
-      @JsonKey(name: 'location_type')
-          required LocationType locationType,
-      @JsonKey(name: 'latt_long')
-      @CoordinateConverter()
-          required Coordinate coordinate,
-      @JsonKey(name: 'woeid')
-          required int id,
-      int? distance}) {
-    return _Location(
-      title: title,
-      locationType: locationType,
-      coordinate: coordinate,
-      id: id,
-      distance: distance,
-    );
-  }
-
-  Location fromJson(Map<String, Object?> json) {
-    return Location.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Location = _$LocationTearOff();
 
 /// @nodoc
 mixin _$Location {
@@ -130,9 +99,10 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
-  factory _$LocationCopyWith(_Location value, $Res Function(_Location) then) =
-      __$LocationCopyWithImpl<$Res>;
+abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
+  factory _$$_LocationCopyWith(
+          _$_Location value, $Res Function(_$_Location) then) =
+      __$$_LocationCopyWithImpl<$Res>;
   @override
   $Res call(
       {String title,
@@ -146,13 +116,14 @@ abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
-    implements _$LocationCopyWith<$Res> {
-  __$LocationCopyWithImpl(_Location _value, $Res Function(_Location) _then)
-      : super(_value, (v) => _then(v as _Location));
+class __$$_LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
+    implements _$$_LocationCopyWith<$Res> {
+  __$$_LocationCopyWithImpl(
+      _$_Location _value, $Res Function(_$_Location) _then)
+      : super(_value, (v) => _then(v as _$_Location));
 
   @override
-  _Location get _value => super._value as _Location;
+  _$_Location get _value => super._value as _$_Location;
 
   @override
   $Res call({
@@ -162,7 +133,7 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
     Object? id = freezed,
     Object? distance = freezed,
   }) {
-    return _then(_Location(
+    return _then(_$_Location(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -228,7 +199,7 @@ class _$_Location implements _Location {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Location &&
+            other is _$_Location &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.locationType, locationType) &&
@@ -238,6 +209,7 @@ class _$_Location implements _Location {
             const DeepCollectionEquality().equals(other.distance, distance));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -249,8 +221,8 @@ class _$_Location implements _Location {
 
   @JsonKey(ignore: true)
   @override
-  _$LocationCopyWith<_Location> get copyWith =>
-      __$LocationCopyWithImpl<_Location>(this, _$identity);
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
+      __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -260,60 +232,41 @@ class _$_Location implements _Location {
 
 abstract class _Location implements Location {
   const factory _Location(
-      {required String title,
+      {required final String title,
       @JsonKey(name: 'location_type')
-          required LocationType locationType,
+          required final LocationType locationType,
       @JsonKey(name: 'latt_long')
       @CoordinateConverter()
-          required Coordinate coordinate,
+          required final Coordinate coordinate,
       @JsonKey(name: 'woeid')
-          required int id,
-      int? distance}) = _$_Location;
+          required final int id,
+      final int? distance}) = _$_Location;
 
   factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'location_type')
-  LocationType get locationType;
+  LocationType get locationType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'latt_long')
   @CoordinateConverter()
-  Coordinate get coordinate;
+  Coordinate get coordinate => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'woeid')
-  int get id;
+  int get id => throw _privateConstructorUsedError;
   @override
-  int? get distance;
+  int? get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LocationCopyWith<_Location> get copyWith =>
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Coordinate _$CoordinateFromJson(Map<String, dynamic> json) {
   return _Coordinate.fromJson(json);
 }
-
-/// @nodoc
-class _$CoordinateTearOff {
-  const _$CoordinateTearOff();
-
-  _Coordinate call({required double latitude, required double longitude}) {
-    return _Coordinate(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-
-  Coordinate fromJson(Map<String, Object?> json) {
-    return Coordinate.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Coordinate = _$CoordinateTearOff();
 
 /// @nodoc
 mixin _$Coordinate {
@@ -361,30 +314,31 @@ class _$CoordinateCopyWithImpl<$Res> implements $CoordinateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CoordinateCopyWith<$Res> implements $CoordinateCopyWith<$Res> {
-  factory _$CoordinateCopyWith(
-          _Coordinate value, $Res Function(_Coordinate) then) =
-      __$CoordinateCopyWithImpl<$Res>;
+abstract class _$$_CoordinateCopyWith<$Res>
+    implements $CoordinateCopyWith<$Res> {
+  factory _$$_CoordinateCopyWith(
+          _$_Coordinate value, $Res Function(_$_Coordinate) then) =
+      __$$_CoordinateCopyWithImpl<$Res>;
   @override
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$CoordinateCopyWithImpl<$Res> extends _$CoordinateCopyWithImpl<$Res>
-    implements _$CoordinateCopyWith<$Res> {
-  __$CoordinateCopyWithImpl(
-      _Coordinate _value, $Res Function(_Coordinate) _then)
-      : super(_value, (v) => _then(v as _Coordinate));
+class __$$_CoordinateCopyWithImpl<$Res> extends _$CoordinateCopyWithImpl<$Res>
+    implements _$$_CoordinateCopyWith<$Res> {
+  __$$_CoordinateCopyWithImpl(
+      _$_Coordinate _value, $Res Function(_$_Coordinate) _then)
+      : super(_value, (v) => _then(v as _$_Coordinate));
 
   @override
-  _Coordinate get _value => super._value as _Coordinate;
+  _$_Coordinate get _value => super._value as _$_Coordinate;
 
   @override
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(_Coordinate(
+    return _then(_$_Coordinate(
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -419,11 +373,12 @@ class _$_Coordinate implements _Coordinate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Coordinate &&
+            other is _$_Coordinate &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
             const DeepCollectionEquality().equals(other.longitude, longitude));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -432,8 +387,8 @@ class _$_Coordinate implements _Coordinate {
 
   @JsonKey(ignore: true)
   @override
-  _$CoordinateCopyWith<_Coordinate> get copyWith =>
-      __$CoordinateCopyWithImpl<_Coordinate>(this, _$identity);
+  _$$_CoordinateCopyWith<_$_Coordinate> get copyWith =>
+      __$$_CoordinateCopyWithImpl<_$_Coordinate>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -443,17 +398,18 @@ class _$_Coordinate implements _Coordinate {
 
 abstract class _Coordinate implements Coordinate {
   const factory _Coordinate(
-      {required double latitude, required double longitude}) = _$_Coordinate;
+      {required final double latitude,
+      required final double longitude}) = _$_Coordinate;
 
   factory _Coordinate.fromJson(Map<String, dynamic> json) =
       _$_Coordinate.fromJson;
 
   @override
-  double get latitude;
+  double get latitude => throw _privateConstructorUsedError;
   @override
-  double get longitude;
+  double get longitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CoordinateCopyWith<_Coordinate> get copyWith =>
+  _$$_CoordinateCopyWith<_$_Coordinate> get copyWith =>
       throw _privateConstructorUsedError;
 }

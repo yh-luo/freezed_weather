@@ -51,7 +51,7 @@ enum WindDirectionCompass {
   unknown,
 }
 
-@freezed
+@Freezed(toJson: false)
 class Weather with _$Weather {
   const factory Weather({
     required int id,

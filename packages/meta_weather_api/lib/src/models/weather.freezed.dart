@@ -12,60 +12,11 @@ part of 'weather.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Weather _$WeatherFromJson(Map<String, dynamic> json) {
   return _Weather.fromJson(json);
 }
-
-/// @nodoc
-class _$WeatherTearOff {
-  const _$WeatherTearOff();
-
-  _Weather call(
-      {required int id,
-      required String weatherStateName,
-      @JsonKey(unknownEnumValue: WeatherState.unknown)
-          required WeatherState weatherStateAbbr,
-      @JsonKey(unknownEnumValue: WindDirectionCompass.unknown)
-          required WindDirectionCompass windDirectionCompass,
-      required DateTime created,
-      required DateTime applicableDate,
-      required double minTemp,
-      required double maxTemp,
-      required double theTemp,
-      required double windSpeed,
-      required double windDirection,
-      required double airPressure,
-      required int humidity,
-      required double visibility,
-      required int predictability}) {
-    return _Weather(
-      id: id,
-      weatherStateName: weatherStateName,
-      weatherStateAbbr: weatherStateAbbr,
-      windDirectionCompass: windDirectionCompass,
-      created: created,
-      applicableDate: applicableDate,
-      minTemp: minTemp,
-      maxTemp: maxTemp,
-      theTemp: theTemp,
-      windSpeed: windSpeed,
-      windDirection: windDirection,
-      airPressure: airPressure,
-      humidity: humidity,
-      visibility: visibility,
-      predictability: predictability,
-    );
-  }
-
-  Weather fromJson(Map<String, Object?> json) {
-    return Weather.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Weather = _$WeatherTearOff();
 
 /// @nodoc
 mixin _$Weather {
@@ -88,7 +39,6 @@ mixin _$Weather {
   double get visibility => throw _privateConstructorUsedError;
   int get predictability => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
 }
@@ -209,9 +159,10 @@ class _$WeatherCopyWithImpl<$Res> implements $WeatherCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
-  factory _$WeatherCopyWith(_Weather value, $Res Function(_Weather) then) =
-      __$WeatherCopyWithImpl<$Res>;
+abstract class _$$_WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
+  factory _$$_WeatherCopyWith(
+          _$_Weather value, $Res Function(_$_Weather) then) =
+      __$$_WeatherCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -234,13 +185,13 @@ abstract class _$WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
-    implements _$WeatherCopyWith<$Res> {
-  __$WeatherCopyWithImpl(_Weather _value, $Res Function(_Weather) _then)
-      : super(_value, (v) => _then(v as _Weather));
+class __$$_WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
+    implements _$$_WeatherCopyWith<$Res> {
+  __$$_WeatherCopyWithImpl(_$_Weather _value, $Res Function(_$_Weather) _then)
+      : super(_value, (v) => _then(v as _$_Weather));
 
   @override
-  _Weather get _value => super._value as _Weather;
+  _$_Weather get _value => super._value as _$_Weather;
 
   @override
   $Res call({
@@ -260,7 +211,7 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
     Object? visibility = freezed,
     Object? predictability = freezed,
   }) {
-    return _then(_Weather(
+    return _then(_$_Weather(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -326,7 +277,7 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_Weather implements _Weather {
   const _$_Weather(
       {required this.id,
@@ -392,7 +343,7 @@ class _$_Weather implements _Weather {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Weather &&
+            other is _$_Weather &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.weatherStateName, weatherStateName) &&
@@ -418,6 +369,7 @@ class _$_Weather implements _Weather {
                 .equals(other.predictability, predictability));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -439,71 +391,67 @@ class _$_Weather implements _Weather {
 
   @JsonKey(ignore: true)
   @override
-  _$WeatherCopyWith<_Weather> get copyWith =>
-      __$WeatherCopyWithImpl<_Weather>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_WeatherToJson(this);
-  }
+  _$$_WeatherCopyWith<_$_Weather> get copyWith =>
+      __$$_WeatherCopyWithImpl<_$_Weather>(this, _$identity);
 }
 
 abstract class _Weather implements Weather {
   const factory _Weather(
-      {required int id,
-      required String weatherStateName,
+      {required final int id,
+      required final String weatherStateName,
       @JsonKey(unknownEnumValue: WeatherState.unknown)
-          required WeatherState weatherStateAbbr,
+          required final WeatherState weatherStateAbbr,
       @JsonKey(unknownEnumValue: WindDirectionCompass.unknown)
-          required WindDirectionCompass windDirectionCompass,
-      required DateTime created,
-      required DateTime applicableDate,
-      required double minTemp,
-      required double maxTemp,
-      required double theTemp,
-      required double windSpeed,
-      required double windDirection,
-      required double airPressure,
-      required int humidity,
-      required double visibility,
-      required int predictability}) = _$_Weather;
+          required final WindDirectionCompass windDirectionCompass,
+      required final DateTime created,
+      required final DateTime applicableDate,
+      required final double minTemp,
+      required final double maxTemp,
+      required final double theTemp,
+      required final double windSpeed,
+      required final double windDirection,
+      required final double airPressure,
+      required final int humidity,
+      required final double visibility,
+      required final int predictability}) = _$_Weather;
 
   factory _Weather.fromJson(Map<String, dynamic> json) = _$_Weather.fromJson;
 
   @override
-  int get id;
+  int get id => throw _privateConstructorUsedError;
   @override
-  String get weatherStateName;
+  String get weatherStateName => throw _privateConstructorUsedError;
   @override
   @JsonKey(unknownEnumValue: WeatherState.unknown)
-  WeatherState get weatherStateAbbr;
+  WeatherState get weatherStateAbbr => throw _privateConstructorUsedError;
   @override
   @JsonKey(unknownEnumValue: WindDirectionCompass.unknown)
-  WindDirectionCompass get windDirectionCompass;
+  WindDirectionCompass get windDirectionCompass =>
+      throw _privateConstructorUsedError;
   @override
-  DateTime get created;
+  DateTime get created => throw _privateConstructorUsedError;
   @override
-  DateTime get applicableDate;
+  DateTime get applicableDate => throw _privateConstructorUsedError;
   @override
-  double get minTemp;
+  double get minTemp => throw _privateConstructorUsedError;
   @override
-  double get maxTemp;
+  double get maxTemp => throw _privateConstructorUsedError;
   @override
-  double get theTemp;
+  double get theTemp => throw _privateConstructorUsedError;
   @override
-  double get windSpeed;
+  double get windSpeed => throw _privateConstructorUsedError;
   @override
-  double get windDirection;
+  double get windDirection => throw _privateConstructorUsedError;
   @override
-  double get airPressure;
+  double get airPressure => throw _privateConstructorUsedError;
   @override
-  int get humidity;
+  int get humidity => throw _privateConstructorUsedError;
   @override
-  double get visibility;
+  double get visibility => throw _privateConstructorUsedError;
   @override
-  int get predictability;
+  int get predictability => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WeatherCopyWith<_Weather> get copyWith =>
+  _$$_WeatherCopyWith<_$_Weather> get copyWith =>
       throw _privateConstructorUsedError;
 }

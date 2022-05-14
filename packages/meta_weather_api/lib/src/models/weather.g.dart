@@ -58,26 +58,6 @@ _$_Weather _$$_WeatherFromJson(Map<String, dynamic> json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_WeatherToJson(_$_Weather instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'weather_state_name': instance.weatherStateName,
-      'weather_state_abbr': _$WeatherStateEnumMap[instance.weatherStateAbbr],
-      'wind_direction_compass':
-          _$WindDirectionCompassEnumMap[instance.windDirectionCompass],
-      'created': instance.created.toIso8601String(),
-      'applicable_date': instance.applicableDate.toIso8601String(),
-      'min_temp': instance.minTemp,
-      'max_temp': instance.maxTemp,
-      'the_temp': instance.theTemp,
-      'wind_speed': instance.windSpeed,
-      'wind_direction': instance.windDirection,
-      'air_pressure': instance.airPressure,
-      'humidity': instance.humidity,
-      'visibility': instance.visibility,
-      'predictability': instance.predictability,
-    };
-
 const _$WeatherStateEnumMap = {
   WeatherState.snow: 'sn',
   WeatherState.sleet: 'sl',
