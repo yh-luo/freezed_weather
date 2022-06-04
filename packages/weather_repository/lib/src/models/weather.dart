@@ -7,6 +7,7 @@ enum WeatherCondition {
   rainy,
   cloudy,
   snowy,
+  foggy,
   unknown,
 }
 

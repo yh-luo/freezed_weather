@@ -35,6 +35,8 @@ extension on Weather {
         return Colors.blueGrey;
       case WeatherCondition.rainy:
         return Colors.indigoAccent;
+      case WeatherCondition.foggy:
+        return Colors.grey;
       case WeatherCondition.unknown:
       default:
         return _Initial().color;

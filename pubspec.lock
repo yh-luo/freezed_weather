@@ -30,7 +30,7 @@ packages:
     source: hosted
     version: "2.8.2"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
       url: "https://pub.dartlang.org"
@@ -723,6 +723,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
+  wttr_in_api:
+    dependency: transitive
+    description:
+      path: "packages/wttr_in_api"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   xdg_directories:
     dependency: transitive
     description:

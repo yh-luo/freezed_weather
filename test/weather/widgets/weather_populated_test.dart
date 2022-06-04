@@ -70,7 +70,22 @@ void main() {
           ),
         ),
       );
-      expect(find.text('🌨️'), findsOneWidget);
+      expect(find.text('❄️'), findsOneWidget);
+    });
+
+    testWidgets('renders correct emoji (foggy)', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: WeatherPopulated(
+              weather: weather.copyWith(condition: WeatherCondition.foggy),
+              units: TemperatureUnits.fahrenheit,
+              onRefresh: () async {},
+            ),
+          ),
+        ),
+      );
+      expect(find.text('🌫️'), findsOneWidget);
     });
 
     testWidgets('renders correct emoji (unknown)', (tester) async {

@@ -10,7 +10,7 @@ import '../weather_bloc_observer.dart';
 
 void main() async {
   HydratedBlocOverrides.runZoned(
-    () => runApp(WeatherApp(weatherRepository: WeatherRepository())),
+    () => runApp(WeatherApp(weatherRepository: WeatherRepository.instance())),
     blocObserver: WeatherBlocObserver(),
     createStorage: () async {
       WidgetsFlutterBinding.ensureInitialized();

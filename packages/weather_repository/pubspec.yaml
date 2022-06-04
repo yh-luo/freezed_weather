@@ -19,3 +19,5 @@ dependencies:
   json_annotation: ^4.5.0
   meta_weather_api: 
     path: ../meta_weather_api
+  wttr_in_api:
+    path: ../wttr_in_api
