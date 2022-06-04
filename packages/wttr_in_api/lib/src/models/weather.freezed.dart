@@ -14,18 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Weather _$WeatherFromJson(Map<String, dynamic> json) {
-  return _Weather.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Weather {
-  String get humidity => throw _privateConstructorUsedError;
-  String get pressure => throw _privateConstructorUsedError;
-  @JsonKey(name: 'temp_C')
-  String get temperature => throw _privateConstructorUsedError;
-  @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
+  double get humidity => throw _privateConstructorUsedError;
+  double get pressure => throw _privateConstructorUsedError;
+  double get temperature => throw _privateConstructorUsedError;
   WeatherState get weatherState => throw _privateConstructorUsedError;
+  Area get area => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
@@ -36,12 +31,13 @@ abstract class $WeatherCopyWith<$Res> {
   factory $WeatherCopyWith(Weather value, $Res Function(Weather) then) =
       _$WeatherCopyWithImpl<$Res>;
   $Res call(
-      {String humidity,
-      String pressure,
-      @JsonKey(name: 'temp_C')
-          String temperature,
-      @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
-          WeatherState weatherState});
+      {double humidity,
+      double pressure,
+      double temperature,
+      WeatherState weatherState,
+      Area area});
+
+  $AreaCopyWith<$Res> get area;
 }
 
 /// @nodoc
@@ -58,25 +54,37 @@ class _$WeatherCopyWithImpl<$Res> implements $WeatherCopyWith<$Res> {
     Object? pressure = freezed,
     Object? temperature = freezed,
     Object? weatherState = freezed,
+    Object? area = freezed,
   }) {
     return _then(_value.copyWith(
       humidity: humidity == freezed
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       pressure: pressure == freezed
           ? _value.pressure
           : pressure // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       temperature: temperature == freezed
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       weatherState: weatherState == freezed
           ? _value.weatherState
           : weatherState // ignore: cast_nullable_to_non_nullable
               as WeatherState,
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as Area,
     ));
+  }
+
+  @override
+  $AreaCopyWith<$Res> get area {
+    return $AreaCopyWith<$Res>(_value.area, (value) {
+      return _then(_value.copyWith(area: value));
+    });
   }
 }
 
@@ -87,12 +95,14 @@ abstract class _$$_WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
       __$$_WeatherCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String humidity,
-      String pressure,
-      @JsonKey(name: 'temp_C')
-          String temperature,
-      @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
-          WeatherState weatherState});
+      {double humidity,
+      double pressure,
+      double temperature,
+      WeatherState weatherState,
+      Area area});
+
+  @override
+  $AreaCopyWith<$Res> get area;
 }
 
 /// @nodoc
@@ -110,56 +120,57 @@ class __$$_WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
     Object? pressure = freezed,
     Object? temperature = freezed,
     Object? weatherState = freezed,
+    Object? area = freezed,
   }) {
     return _then(_$_Weather(
       humidity: humidity == freezed
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       pressure: pressure == freezed
           ? _value.pressure
           : pressure // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       temperature: temperature == freezed
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       weatherState: weatherState == freezed
           ? _value.weatherState
           : weatherState // ignore: cast_nullable_to_non_nullable
               as WeatherState,
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as Area,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable(createToJson: false)
+
 class _$_Weather implements _Weather {
   const _$_Weather(
       {required this.humidity,
       required this.pressure,
-      @JsonKey(name: 'temp_C')
-          required this.temperature,
-      @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
-          required this.weatherState});
-
-  factory _$_Weather.fromJson(Map<String, dynamic> json) =>
-      _$$_WeatherFromJson(json);
+      required this.temperature,
+      required this.weatherState,
+      required this.area});
 
   @override
-  final String humidity;
+  final double humidity;
   @override
-  final String pressure;
+  final double pressure;
   @override
-  @JsonKey(name: 'temp_C')
-  final String temperature;
+  final double temperature;
   @override
-  @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
   final WeatherState weatherState;
+  @override
+  final Area area;
 
   @override
   String toString() {
-    return 'Weather(humidity: $humidity, pressure: $pressure, temperature: $temperature, weatherState: $weatherState)';
+    return 'Weather(humidity: $humidity, pressure: $pressure, temperature: $temperature, weatherState: $weatherState, area: $area)';
   }
 
   @override
@@ -172,17 +183,18 @@ class _$_Weather implements _Weather {
             const DeepCollectionEquality()
                 .equals(other.temperature, temperature) &&
             const DeepCollectionEquality()
-                .equals(other.weatherState, weatherState));
+                .equals(other.weatherState, weatherState) &&
+            const DeepCollectionEquality().equals(other.area, area));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(humidity),
       const DeepCollectionEquality().hash(pressure),
       const DeepCollectionEquality().hash(temperature),
-      const DeepCollectionEquality().hash(weatherState));
+      const DeepCollectionEquality().hash(weatherState),
+      const DeepCollectionEquality().hash(area));
 
   @JsonKey(ignore: true)
   @override
@@ -192,25 +204,22 @@ class _$_Weather implements _Weather {
 
 abstract class _Weather implements Weather {
   const factory _Weather(
-      {required final String humidity,
-      required final String pressure,
-      @JsonKey(name: 'temp_C')
-          required final String temperature,
-      @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
-          required final WeatherState weatherState}) = _$_Weather;
-
-  factory _Weather.fromJson(Map<String, dynamic> json) = _$_Weather.fromJson;
+      {required final double humidity,
+      required final double pressure,
+      required final double temperature,
+      required final WeatherState weatherState,
+      required final Area area}) = _$_Weather;
 
   @override
-  String get humidity => throw _privateConstructorUsedError;
+  double get humidity => throw _privateConstructorUsedError;
   @override
-  String get pressure => throw _privateConstructorUsedError;
+  double get pressure => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'temp_C')
-  String get temperature => throw _privateConstructorUsedError;
+  double get temperature => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'weatherCode', unknownEnumValue: WeatherState.unknown)
   WeatherState get weatherState => throw _privateConstructorUsedError;
+  @override
+  Area get area => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherCopyWith<_$_Weather> get copyWith =>

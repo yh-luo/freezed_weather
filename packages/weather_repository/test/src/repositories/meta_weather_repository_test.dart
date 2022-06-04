@@ -12,25 +12,25 @@ class MockLocation extends Mock implements meta_weather_api.Location {}
 class MockWeather extends Mock implements meta_weather_api.Weather {}
 
 void main() {
-  group('WeatherRepository', () {
+  group('MetaWeatherWeatherRepository', () {
     late meta_weather_api.MetaWeatherApiClient metaWeatherApiClient;
-    late WeatherRepository weatherRepository;
+    late MetaWeatherWeatherRepository weatherRepository;
 
     setUp(() {
       metaWeatherApiClient = MockMetaWeatherApiClient();
-      weatherRepository = WeatherRepository(
+      weatherRepository = MetaWeatherWeatherRepository(
         weatherApiClient: metaWeatherApiClient,
       );
     });
 
     group('constructor', () {
       test('instantiates internal MetaWeatherApiClient when not injected', () {
-        expect(WeatherRepository(), isNotNull);
+        expect(MetaWeatherWeatherRepository(), isNotNull);
       });
     });
 
     group('getWeather', () {
-      const city = 'london';
+      const city = 'London';
       const woeid = 44418;
 
       test('calls locationSearch with correct city', () async {
