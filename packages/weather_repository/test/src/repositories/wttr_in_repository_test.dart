@@ -163,6 +163,29 @@ void main() {
           ),
         );
       });
+
+      test('update name of location', () async {
+        final area = MockArea();
+        final weather = MockWeather();
+        when(() => weather.temperature).thenReturn(42.42);
+        when(() => weather.weatherState)
+            .thenReturn(wttr_in_api.WeatherState.fog3);
+        when(() => weather.area).thenReturn(area);
+        when(() => area.name).thenReturn('River Thames');
+        when(() => wttrInApiClient.getWeather(any())).thenAnswer(
+          (_) async => weather,
+        );
+
+        final actual = await weatherRepository.getWeather(city);
+        expect(
+          actual,
+          Weather(
+            temperature: 42.42,
+            location: 'London\n(River Thames)',
+            condition: WeatherCondition.foggy,
+          ),
+        );
+      });
     });
   });
 }
