@@ -73,6 +73,7 @@ class WeatherView extends StatelessWidget {
         child: const Icon(Icons.search),
         onPressed: () async {
           final city = await Navigator.of(context).push(SearchPage.route());
+          // ignore: use_build_context_synchronously
           context.read<WeatherBloc>().add(WeatherEvent.started(city!));
         },
       ),

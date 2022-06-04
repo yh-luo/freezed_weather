@@ -83,7 +83,9 @@ extension on WeatherCondition {
       case WeatherCondition.cloudy:
         return '☁️';
       case WeatherCondition.snowy:
-        return '🌨️';
+        return '❄️';
+      case WeatherCondition.foggy:
+        return '🌫️';
       case WeatherCondition.unknown:
       default:
         return '❓';
