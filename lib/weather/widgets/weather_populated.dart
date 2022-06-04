@@ -33,6 +33,7 @@ class WeatherPopulated extends StatelessWidget {
                   _WeatherIcon(condition: weather.condition),
                   Text(
                     weather.location,
+                    textAlign: TextAlign.center,
                     style: theme.textTheme.headline2?.copyWith(
                       fontWeight: FontWeight.w200,
                     ),
