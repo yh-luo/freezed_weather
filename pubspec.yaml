@@ -18,6 +18,7 @@ dependencies:
   hydrated_bloc: ^9.0.0-dev.2
   google_fonts: ^2.3.2
   path_provider: ^2.0.10
+  bloc: ^8.0.3
 
 dev_dependencies:
   flutter_test:
