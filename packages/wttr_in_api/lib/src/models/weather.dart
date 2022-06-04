@@ -174,14 +174,18 @@ class Weather with _$Weather {
   }) = _Weather;
 
   factory Weather.fromJson(Map<String, dynamic> json) {
-    final area = Area.fromJson(
-        (json['nearest_area'] as List).first as Map<String, dynamic>);
+    final weatherJson =
+        (json['current_condition'] as List).first as Map<String, dynamic>;
+    final areaJson =
+        (json['nearest_area'] as List).first as Map<String, dynamic>;
+    final area = Area.fromJson(areaJson);
 
     return Weather(
-        humidity: double.parse(json['humidity'] as String),
-        pressure: double.parse(json['pressure'] as String),
-        temperature: double.parse(json['temp_C'] as String),
-        weatherState: WeatherState.fromData(json['weatherCode'] as String),
+        humidity: double.parse(weatherJson['humidity'] as String),
+        pressure: double.parse(weatherJson['pressure'] as String),
+        temperature: double.parse(weatherJson['temp_C'] as String),
+        weatherState:
+            WeatherState.fromData(weatherJson['weatherCode'] as String),
         area: area);
   }
 }

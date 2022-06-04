@@ -36,13 +36,10 @@ class WttrInApiClient {
     if (bodyJson.isEmpty) {
       throw WeatherNotFoundFailure();
     }
-
-    final weatherJson = bodyJson['current_condition'] as List;
-
-    if (weatherJson.isEmpty) {
+    if ((bodyJson['current_condition'] as List).isEmpty) {
       throw WeatherNotFoundFailure();
     }
 
-    return Weather.fromJson(weatherJson.first as Map<String, dynamic>);
+    return Weather.fromJson(bodyJson);
   }
 }
