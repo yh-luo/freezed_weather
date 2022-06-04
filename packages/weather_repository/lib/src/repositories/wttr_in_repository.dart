@@ -14,9 +14,14 @@ class WttrInWeatherRepository implements WeatherRepository {
   @override
   Future<Weather> getWeather(String location) async {
     final weather = await _wttrInApiClient.getWeather(location);
+    var locationName = location;
+    if (weather.area.name != location) {
+      locationName = '$location\n(${weather.area.name})';
+    }
+
     return Weather(
       temperature: weather.temperature,
-      location: weather.area.name,
+      location: locationName,
       condition: weather.weatherState.toCondition,
     );
   }
