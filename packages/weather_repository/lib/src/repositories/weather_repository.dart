@@ -1,5 +1,4 @@
-import 'package:weather_repository/src/repositories/meta_weather_repository.dart';
-
+import 'meta_weather_repository.dart';
 import 'wttr_in_repository.dart';
 
 import '../models/models.dart';
