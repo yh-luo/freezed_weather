@@ -56,8 +56,10 @@ class WeatherBloc extends HydratedBloc<WeatherEvent, WeatherState> {
     }
 
     try {
+      // strip the area name
+      final location = state.weather!.location.split('\n')[0];
       final weather = Weather.fromRepository(
-        await _weatherRepository.getWeather(state.weather!.location),
+        await _weatherRepository.getWeather(location),
       );
       final units = state.temperatureUnits;
       final value = units.isFahrenheit
