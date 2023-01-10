@@ -14,11 +14,11 @@ dependencies:
   json_annotation: ^4.5.0
   weather_repository: 
     path: packages/weather_repository
-  flutter_bloc: ^8.0.1
-  hydrated_bloc: ^9.0.0-dev.2
+  flutter_bloc: ^8.1.1
+  hydrated_bloc: ^9.0.0
   google_fonts: ^2.3.2
   path_provider: ^2.0.10
-  bloc: ^8.0.3
+  bloc: ^8.1.0
 
 dev_dependencies:
   flutter_test:
@@ -27,7 +27,7 @@ dev_dependencies:
   freezed: ^2.0.3+1
   build_runner: ^2.1.10
   json_serializable: ^6.2.0
-  bloc_test: ^9.0.3
+  bloc_test: ^9.1.0
   mocktail: ^0.3.0
   test: ^1.21.1
 

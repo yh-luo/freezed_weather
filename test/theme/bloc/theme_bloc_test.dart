@@ -20,27 +20,26 @@ class MockWeather extends Mock implements Weather {
 }
 
 void main() {
+  initHydratedStorage();
+
   group('ThemeBloc', () {
     late ThemeBloc themeBloc;
 
-    setUp(() async {
-      themeBloc = await mockHydratedStorage(() => ThemeBloc());
+    setUp(() {
+      themeBloc = ThemeBloc();
     });
+
     test('initial state is correct', () {
-      mockHydratedStorage(() {
-        expect(ThemeBloc().state, ThemeState.initial());
-      });
+      expect(ThemeBloc().state, ThemeState.initial());
     });
 
     group('toJson/fromJson', () {
       test('work properly', () {
-        mockHydratedStorage(() {
-          final themeBloc = ThemeBloc();
-          expect(
-            themeBloc.fromJson(themeBloc.toJson(themeBloc.state)),
-            themeBloc.state,
-          );
-        });
+        final themeBloc = ThemeBloc();
+        expect(
+          themeBloc.fromJson(themeBloc.toJson(themeBloc.state)),
+          themeBloc.state,
+        );
       });
     });
 

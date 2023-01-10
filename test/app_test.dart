@@ -19,6 +19,8 @@ class MockThemeBloc extends MockBloc<ThemeEvent, ThemeState>
 class MockWeatherRepository extends Mock implements WeatherRepository {}
 
 void main() {
+  initHydratedStorage();
+
   group('WeatherApp', () {
     late WeatherRepository weatherRepository;
 
@@ -27,11 +29,9 @@ void main() {
     });
 
     testWidgets('renders WeatherAppView', (tester) async {
-      await mockHydratedStorage(() async {
-        await tester.pumpWidget(
-          WeatherApp(weatherRepository: weatherRepository),
-        );
-      });
+      await tester.pumpWidget(
+        WeatherApp(weatherRepository: weatherRepository),
+      );
       expect(find.byType(WeatherAppView), findsOneWidget);
     });
   });
@@ -48,34 +48,30 @@ void main() {
     testWidgets('renders WeatherPage', (tester) async {
       when(() => themeBloc.state)
           .thenReturn(const ThemeState.loaded(Colors.blue));
-      await mockHydratedStorage(() async {
-        await tester.pumpWidget(
-          RepositoryProvider.value(
-            value: weatherRepository,
-            child: BlocProvider.value(
-              value: themeBloc,
-              child: WeatherAppView(),
-            ),
+      await tester.pumpWidget(
+        RepositoryProvider.value(
+          value: weatherRepository,
+          child: BlocProvider.value(
+            value: themeBloc,
+            child: WeatherAppView(),
           ),
-        );
-      });
+        ),
+      );
       expect(find.byType(WeatherPage), findsOneWidget);
     });
 
     testWidgets('has correct theme primary color', (tester) async {
       const color = Color(0xFFD2D2D2);
       when(() => themeBloc.state).thenReturn(ThemeState.loaded(color));
-      await mockHydratedStorage(() async {
-        await tester.pumpWidget(
-          RepositoryProvider.value(
-            value: weatherRepository,
-            child: BlocProvider.value(
-              value: themeBloc,
-              child: WeatherAppView(),
-            ),
+      await tester.pumpWidget(
+        RepositoryProvider.value(
+          value: weatherRepository,
+          child: BlocProvider.value(
+            value: themeBloc,
+            child: WeatherAppView(),
           ),
-        );
-      });
+        ),
+      );
       final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
       expect(materialApp.theme?.primaryColor, color);
     });

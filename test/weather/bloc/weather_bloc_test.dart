@@ -20,6 +20,8 @@ class MockWeatherRepository extends Mock
 class MockWeather extends Mock implements weather_repository.Weather {}
 
 void main() {
+  initHydratedStorage();
+
   group('WeatherBloc', () {
     late weather_repository.Weather weather;
     late weather_repository.WeatherRepository weatherRepository;
@@ -35,41 +37,32 @@ void main() {
         () => weatherRepository.getWeather(any()),
       ).thenAnswer((_) async => weather);
 
-      weatherBloc =
-          await mockHydratedStorage(() => WeatherBloc(weatherRepository));
+      weatherBloc = WeatherBloc(weatherRepository);
     });
 
     test('initial state is correct', () {
-      mockHydratedStorage(() {
-        final weatherBloc = WeatherBloc(weatherRepository);
-        expect(weatherBloc.state, WeatherState());
-      });
+      final weatherBloc = WeatherBloc(weatherRepository);
+      expect(weatherBloc.state, WeatherState());
     });
 
     group('toJson/fromJson', () {
       test('persist the successful state', () {
-        mockHydratedStorage(() {
-          final weatherBloc = WeatherBloc(weatherRepository);
-          weatherBloc.add(WeatherEvent.started('Taipei'));
-          Future.delayed(
-              Duration(milliseconds: 100),
-              () => expect(
-                    weatherBloc
-                        .fromJson(weatherBloc.toJson(weatherBloc.state)!),
-                    weatherBloc.state,
-                  ));
-        });
+        final weatherBloc = WeatherBloc(weatherRepository);
+        weatherBloc.add(WeatherEvent.started('Taipei'));
+        Future.delayed(
+            Duration(milliseconds: 100),
+            () => expect(
+                  weatherBloc.fromJson(weatherBloc.toJson(weatherBloc.state)!),
+                  weatherBloc.state,
+                ));
       });
 
       test('state is not persisted when error happens', () {
-        mockHydratedStorage(() {
-          final weatherBloc = WeatherBloc(weatherRepository);
-          when(() => weatherRepository.getWeather(any()))
-              .thenThrow(Exception());
-          weatherBloc.add(WeatherEvent.started('Taipei'));
-          Future.delayed(Duration(milliseconds: 100),
-              () => expect(weatherBloc.toJson(weatherBloc.state), isNull));
-        });
+        final weatherBloc = WeatherBloc(weatherRepository);
+        when(() => weatherRepository.getWeather(any())).thenThrow(Exception());
+        weatherBloc.add(WeatherEvent.started('Taipei'));
+        Future.delayed(Duration(milliseconds: 100),
+            () => expect(weatherBloc.toJson(weatherBloc.state), isNull));
       });
     });
 
