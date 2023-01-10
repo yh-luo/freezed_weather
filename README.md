@@ -40,6 +40,12 @@ The bloc is working properly but the user experience is not optimal. `WeatherBlo
 
 ### Changelog
 
+#### Update hydrated_bloc to 9.0.0
+
+In hydrated_bloc v9.0.0, `HydratedBlocOverrides` was removed in favor of the `HydratedBloc.storage` API.
+
+You can use tag `3.0` to fetch the previous code, which works on the old API.
+
 #### After MetaWeather is down
 
 A new package `wttr_in_api`, which implements a client for [wttr.in](https://github.com/chubin/wttr.in), is created. The layered structure makes it possible to switch between different API providers.
