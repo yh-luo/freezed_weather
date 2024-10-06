@@ -33,13 +33,13 @@ Tested on Flutter 3.13.9 / Dart 3.1.5, newer versions should also work.
 - Install dependencies:
 
   ```bash
-  ▶ dart run build_runner build -d
+  dart pub get
   ```
 
 - Generate necessary files (`*.g.dart` and `*.freezed.dart`):
 
   ```bash
-  ▶ dart run build_runner build -d
+  dart run build_runner build -d
   ```
 
 ### Setting Up the App
@@ -47,13 +47,13 @@ Tested on Flutter 3.13.9 / Dart 3.1.5, newer versions should also work.
 - In the project root, install dependencies:
 
   ```bash
-  ▶ flutter pub get
+  flutter pub get
   ```
 
 - Generate necessary files (`*.g.dart` and `*.freezed.dart`):
 
   ```bash
-  ▶ dart run build_runner build -d
+  dart run build_runner build -d
   ```
 
 ### Notable features
@@ -79,7 +79,7 @@ The bloc is working properly but the user experience is not optimal. `WeatherBlo
 #### After Dart 3.0 & Flutter 3.10
 
 - Updated to build with Flutter 3.13.9.
-- Note: This version is incompatible with previous versions. Use tag `4.0` to fetch earlier scripts.
+- Note: Use tag `4.0` to fetch earlier scripts to work with Flutter versions < 3.10.
 
 #### Update `hydrated_bloc` to 9.0.0
 
