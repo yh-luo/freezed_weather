@@ -40,7 +40,7 @@ class WeatherAppView extends StatelessWidget {
             appBarTheme: AppBarTheme(
               titleTextStyle: GoogleFonts.rajdhaniTextTheme(textTheme)
                   .apply(bodyColor: Colors.white)
-                  .headline6,
+                  .titleLarge,
             ),
           ),
           home: const WeatherPage(),

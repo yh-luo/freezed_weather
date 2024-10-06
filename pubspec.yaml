@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 2.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -16,7 +16,7 @@ dependencies:
     path: packages/weather_repository
   flutter_bloc: ^8.1.1
   hydrated_bloc: ^9.0.0
-  google_fonts: ^2.3.2
+  google_fonts: ^4.0.5
   path_provider: ^2.0.10
   bloc: ^8.1.0
 

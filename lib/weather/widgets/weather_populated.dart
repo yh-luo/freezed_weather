@@ -34,13 +34,13 @@ class WeatherPopulated extends StatelessWidget {
                   Text(
                     weather.location,
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.headline2?.copyWith(
+                    style: theme.textTheme.displayMedium?.copyWith(
                       fontWeight: FontWeight.w200,
                     ),
                   ),
                   Text(
                     weather.formattedTemperature(units),
-                    style: theme.textTheme.headline3?.copyWith(
+                    style: theme.textTheme.displaySmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
