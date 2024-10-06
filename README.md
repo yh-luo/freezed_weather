@@ -20,7 +20,43 @@ using [freezed](https://pub.dev/packages/freezed).
     - A new `WttrInWeatherRepository` is created to use `wttr_in_api`.
     - `WeatherRepository` needs to be instantiated through `WeatherRepository.instance()` now.
 
-### Notable changes
+## How to Start
+
+### Flutter version
+
+Tested on Flutter 3.13.9 / Dart 3.1.5, newer versions should also work.
+
+### Setting Up Packages
+
+- Navigate to each package directory in `./packages`
+
+- Install dependencies:
+
+  ```bash
+  ▶ dart run build_runner build -d
+  ```
+
+- Generate necessary files (`*.g.dart` and `*.freezed.dart`):
+
+  ```bash
+  ▶ dart run build_runner build -d
+  ```
+
+### Setting Up the App
+
+- In the project root, install dependencies:
+
+  ```bash
+  ▶ flutter pub get
+  ```
+
+- Generate necessary files (`*.g.dart` and `*.freezed.dart`):
+
+  ```bash
+  ▶ dart run build_runner build -d
+  ```
+
+### Notable features
 
 #### `@freezed` data models
 
@@ -40,21 +76,25 @@ The bloc is working properly but the user experience is not optimal. `WeatherBlo
 
 ### Changelog
 
-#### Update hydrated_bloc to 9.0.0
+#### After Dart 3.0 & Flutter 3.10
 
-In hydrated_bloc v9.0.0, `HydratedBlocOverrides` was removed in favor of the `HydratedBloc.storage` API.
+- Updated to build with Flutter 3.13.9.
+- Note: This version is incompatible with previous versions. Use tag `4.0` to fetch earlier scripts.
 
-You can use tag `3.0` to fetch the previous code, which works on the old API.
+#### Update `hydrated_bloc` to 9.0.0
 
-#### After MetaWeather is down
+- `HydratedBlocOverrides` removed in favor of `HydratedBloc.storage` API.
+- Note: Use tag `3.0` to fetch code compatible with the old API.
+
+#### MetaWeather API Deprecation
 
 A new package `wttr_in_api`, which implements a client for [wttr.in](https://github.com/chubin/wttr.in), is created. The layered structure makes it possible to switch between different API providers.
 `WeatherRepository` is refactored to an abstract class to reflect this.
 
-You can use tag `2.0` to fetch the previous project, which uses only the MetaWeather API.
+Use tag `2.0` to fetch the previous project, which uses only the MetaWeather API.
 
 #### After Flutter 3.0
 
 This tutorial has been rewritten after the releases of [Flutter 3.0](https://docs.flutter.dev/development/tools/sdk/release-notes), [freezed 2.0.3](https://pub.dev/packages/freezed), and [hydrated_bloc 9.0.0-dev.2](https://pub.dev/packages/hydrated_bloc/versions/9.0.0-dev.2).
 
-It won't work on previous versions. You can use tag `1.0` to fetch the older scripts.
+- Note: This version is incompatible with previous versions. Use tag `1.0` to fetch older scripts.

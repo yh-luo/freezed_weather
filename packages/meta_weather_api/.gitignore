@@ -5,3 +5,7 @@
 .packages
 build/
 pubspec.lock
+
+# generated files
+*.g.dart
+*.freezed.dart
